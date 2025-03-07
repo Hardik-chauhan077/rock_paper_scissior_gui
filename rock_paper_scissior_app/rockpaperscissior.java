@@ -1,13 +1,21 @@
 package rock_paper_scissior_app;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class rockpaperscissior extends JFrame implements ActionListener {
+public class rockpaperscissior {
     // All the choices that the computer can choose
     private static final String[] choices = {"rock", "paper", "scissors"};
+
+    private String computerChoice;  // Stores the computer choice
+    private int computerscore;      // Store the computer score
+    private int playerscore;        // Store the player score
+    private Random random;          // Random generator for computer's choice
+
+    public rockpaperscissior() {
+        random = new Random();
+        computerscore = 0;
+        playerscore = 0;
+    }
 
     public String getComputerChoice() {
         return computerChoice;
@@ -17,26 +25,11 @@ public class rockpaperscissior extends JFrame implements ActionListener {
         return computerscore;
     }
 
-    // It stores the computer choice
-    private String computerChoice;
-
-    // Store the score that
-    private int computerscore;
-
     public int getPlayerscore() {
         return playerscore;
     }
 
-    // Store the player score;
-    private int playerscore;
-
-    private Random random; // It gives random value to the user
-
-    public rockpaperscissior() {
-        random = new Random();
-    }
-
-    // This is the method where the player chooses rock, paper, or scissors
+    // This method determines the result of the game
     public String play(String playerChoice) {
         // The computer randomly selects a choice
         computerChoice = choices[random.nextInt(choices.length)];
@@ -45,42 +38,36 @@ public class rockpaperscissior extends JFrame implements ActionListener {
         String result;
         if (computerChoice.equals("rock")) {
             if (playerChoice.equals("paper")) {
-                result = "player wins:";
+                result = "Player wins!";
                 playerscore++;
-            } else if (playerChoice.equals("scissior")) {
-                result = "computer wins:";
+            } else if (playerChoice.equals("scissors")) {
+                result = "Computer wins!";
                 computerscore++;
             } else {
-                result = "draw:";
+                result = "It's a draw!";
             }
         } else if (computerChoice.equals("paper")) {
-            if (playerChoice.equals("scissior")) {
-                result = "player wins:";
+            if (playerChoice.equals("scissors")) {
+                result = "Player wins!";
                 playerscore++;
             } else if (playerChoice.equals("rock")) {
-                result = "computer wins:";
+                result = "Computer wins!";
                 computerscore++;
             } else {
-                result = "draw:";
+                result = "It's a draw!";
             }
-        } else {
+        } else { // computerChoice.equals("scissors")
             if (playerChoice.equals("rock")) {
-                result = "player wins:";
+                result = "Player wins!";
                 playerscore++;
             } else if (playerChoice.equals("paper")) {
-                result = "computer wins:";
+                result = "Computer wins!";
                 computerscore++;
             } else {
-                result = "draw:";
+                result = "It's a draw!";
             }
         }
 
         return result;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-    }
 }
-
